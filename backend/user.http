@@ -1,0 +1,24 @@
+@URL=http://localhost/todo/backend
+
+### Create a User
+POST {{URL}}/user/create.php
+Content-Type: application/json
+
+{
+    "name": "Juca da Silva",
+    "email": "juca4@gmail.com",
+    "password": "1234"
+}
+
+### Login (Generate Token)
+POST {{URL}}/user/login.php
+Content-Type: application/json
+
+{
+    "email": "juca2@gmail.com",
+    "password": "juquinha2"
+}
+
+### Valid Token
+POST {{URL}}/auth/recursoqualquer.php
+Authorization: 
