@@ -1,0 +1,50 @@
+@URL=http://localhost/todo/backend
+
+### Create a User
+POST {{URL}}/todo/create.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "title": "Title ToDo",
+    "description": "Description ToDo",
+    "deadline": "2022-12-08 14:34:05",
+    "status": "A",
+    "fk_user": "2"
+}
+
+### Atualizar um todo
+POST {{URL}}/todo/update.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "id": 2,
+    "title": "Title ToDo versão 2",
+    "description": "Description ToDo",
+    "deadline": "2022-12-08 14:34:05",
+    "status": "D"
+}
+
+### Obter todos os todos
+POST {{URL}}/todo/list.php
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+
+### Obter todo pelo id
+POST {{URL}}/todo/list.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "id": "2"
+}
+
+### Deletar um todo
+POST {{URL}}/todo/delete.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "id": "1"
+}
