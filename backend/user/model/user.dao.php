@@ -6,7 +6,8 @@ class UserDAO {
     }
 
     public function login($email, $password) {
-        $stmt = $this -> pdo -> prepare("SELECT name, email FROM tb_user WHERE email = ? AND password = ?");
+        $sql = "SELECT * FROM tb_user WHERE email = ? AND password = ?";
+        $stmt = $this -> pdo -> prepare($sql);
         $stmt -> bindParam(1, $email);
         $stmt -> bindParam(2, $password);
 
@@ -14,8 +15,9 @@ class UserDAO {
         return $stmt -> fetchObject();
     }
 
-    public function get($email) {
-        $stmt = $this -> pdo -> prepare("SELECT * FROM tb_user WHERE email = ?");
+    public function getById($email) {
+        $sql = "SELECT * FROM tb_user WHERE email = ?";
+        $stmt = $this -> pdo -> prepare($sql);
         $stmt -> bindParam(1, $email);
 
         $stmt -> execute();
@@ -23,7 +25,8 @@ class UserDAO {
     }
 
     public function getAll() {
-        $stmt = $this -> pdo -> prepare("SELECT * FROMtb_user");
+        $sql = "SELECT * FROM tb_user";
+        $stmt = $this -> pdo -> prepare($sql);
         $stmt -> execute();
     
         // Retorna um array de objetos
@@ -31,11 +34,13 @@ class UserDAO {
     }
     
     public function insert($user) {
-        $stmt = $this -> pdo -> prepare("INSERT INTO tb_user (name, email,  password) VALUES (:name, :email, :password)");
+        $sql = "INSERT INTO tb_user (name, email, password)
+            VALUES (:name, :email, :password)";
+        $stmt = $this -> pdo -> prepare($sql);
+
         $stmt -> bindValue(':name', $user -> name);
         $stmt -> bindValue(':email', $user -> email);
         $stmt -> bindValue(':password', $user -> password);
-    
         $stmt -> execute();
         $user = clone $user;
     
@@ -44,30 +49,35 @@ class UserDAO {
         return $user;
     }
     
-    public function update($email, $user) {
-        $stmt = $this -> pdo -> prepare("UPDATE tb_user
-            SET
-                name = :name,
-                email = :email,
-                password = :password
-            WHERE
-                email = :email");
+    public function update($email_token, $user) {
+        $sql = "UPDATE tb_user SET 
+            name = :name,
+            email = :email,
+            password = :password
+            WHERE email = :email_token";
+        
+        $stmt = $this -> pdo -> prepare($sql);
+        $stmt -> bindValue(':name', @$user -> name);
+        $stmt -> bindValue(':email', @$user -> email);
+        $stmt -> bindValue(':password', @$user -> password);
+        $stmt -> bindValue(':email_token', @$email_token);
+
+        $stmt -> execute();
+        $user = clone $user;
     
-        $data = [
-            'name' => $user -> name,
-            'email' => $user -> email,
-            'password' => $user -> password,
-        ];
+        $user -> id = $this -> pdo -> lastInsertId();
     
-        return $stmt -> execute($data);
+        return $user;
     }
     
-    public function delete($email) {
-        $stmt = $this -> pdo -> prepare("DELETE from tb_user WHERE email = ?");
-        $stmt -> bindParam(1, $email);
-    
+    public function delete($email_token) {
+        $sql = "DELETE FROM tb_user WHERE email = ?";
+
+        $stmt = $this -> pdo -> prepare($sql);
+        $stmt -> bindParam(1, $email_token);
+
         $stmt -> execute();
-    
+
         return $stmt -> rowCount(); // Retorna a quantidade de linhas afetadas
     }
 }

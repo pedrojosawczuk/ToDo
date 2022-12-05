@@ -15,10 +15,43 @@ POST {{URL}}/user/login.php
 Content-Type: application/json
 
 {
-    "email": "juca2@gmail.com",
-    "password": "juquinha2"
+    "email": "juca1@gmail.com",
+    "password": "1234"
 }
 
 ### Valid Token
 POST {{URL}}/auth/recursoqualquer.php
-Authorization: 
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+### Atualizar um usuário
+POST {{URL}}/user/update.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "name": "Juca da Silva",
+    "email": "juca2@gmail.com",
+    "password": "juquinha2"
+}
+
+### Obter todos os usuários
+POST {{URL}}/user/list.php
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+### Obter um usuário pelo EMAIL
+POST {{URL}}/user/list.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "email": "juca2@gmail.com"
+}
+
+### Deletar um usuário
+POST {{URL}}/user/delete.php
+Content-Type: application/json
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+
+{
+    "email": "juca4@gmail.com"
+}
