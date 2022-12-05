@@ -6,6 +6,8 @@ CREATE TABLE tb_user (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(128) NOT NULL,
+    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     photo LONGBLOB,
     PRIMARY KEY (id),
     UNIQUE(email)
@@ -15,7 +17,10 @@ CREATE TABLE tb_todo (
     id BIGINT NOT NULL AUTO_INCREMENT,
     title INT(20) NOT NULL default 0,
     description INT(255),
-    status VARCHAR(1) NOT NULL default 'D',
+    deadline DATETIME,
+    status VARCHAR(1) NOT NULL default 'A',
+    created_at DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     fk_user BIGINT,
     PRIMARY KEY (id),
     CONSTRAINT fk_todoXuser
