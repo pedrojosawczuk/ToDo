@@ -1,5 +1,7 @@
 @URL=http://localhost/todo/backend
 
+@JWT = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqdWNhMkBnbWFpbC5jb20ifQ.OMtGQBiVpk_bQRB4sRzd4p3-U1ScumrIe8wKpuh0UNM
+
 ### Create a User
 POST {{URL}}/user/create.php
 Content-Type: application/json
@@ -15,43 +17,30 @@ POST {{URL}}/user/login.php
 Content-Type: application/json
 
 {
-    "email": "juca1@gmail.com",
-    "password": "1234"
-}
-
-### Valid Token
-POST {{URL}}/auth/recursoqualquer.php
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
-
-### Atualizar um usuário
-POST {{URL}}/user/update.php
-Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
-
-{
-    "name": "Juca da Silva",
     "email": "juca2@gmail.com",
     "password": "juquinha2"
 }
 
-### Obter todos os usuários
-POST {{URL}}/user/list.php
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+### Valid Token
+POST {{URL}}/auth/recursoqualquer.php
+Authorization: {{JWT}}
+
+### Atualizar um usuário
+POST {{URL}}/user/update.php
+Content-Type: application/json
+Authorization: {{JWT}}
+
+{
+    "name": "Juca da Silva",
+    "email": "juca1@gmail.com",
+    "password": "juquinha1"
+}
 
 ### Obter um usuário pelo EMAIL
 POST {{URL}}/user/list.php
-Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+Authorization: {{JWT}}
 
-{
-    "email": "juca2@gmail.com"
-}
 
 ### Deletar um usuário
 POST {{URL}}/user/delete.php
-Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
-
-{
-    "email": "juca4@gmail.com"
-}
+Authorization: {{JWT}}

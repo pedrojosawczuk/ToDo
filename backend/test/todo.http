@@ -1,9 +1,11 @@
 @URL=http://localhost/todo/backend
 
+@JWT = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.zeY6Rm--spAS-DdrA6boEDxJVLErMyVoFj5KbwkZ7kg
+
 ### Create a User
 POST {{URL}}/todo/create.php
 Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+Authorization: {{JWT}}
 
 {
     "title": "Title ToDo",
@@ -16,7 +18,7 @@ Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWN
 ### Atualizar um todo
 POST {{URL}}/todo/update.php
 Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+Authorization: {{JWT}}
 
 {
     "id": 2,
@@ -28,13 +30,13 @@ Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWN
 
 ### Obter todos os todos
 POST {{URL}}/todo/list.php
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+Authorization: {{JWT}}
 
 
 ### Obter todo pelo id
 POST {{URL}}/todo/list.php
 Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+Authorization: {{JWT}}
 
 {
     "id": "2"
@@ -43,8 +45,8 @@ Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWN
 ### Deletar um todo
 POST {{URL}}/todo/delete.php
 Content-Type: application/json
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.A--TMV5MLpZ4ZUQUX9VdZBE-GWSXC-3fYKjCTjeVHpI"
+Authorization: {{JWT}}
 
 {
-    "id": "1"
+    "id": "6"
 }
