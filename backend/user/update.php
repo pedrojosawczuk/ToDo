@@ -5,13 +5,16 @@ require_once("model/user.dao.php");
 
 $userDAO = new UserDAO($pdo);
 
+// Se token Válido, extrai o email to token
+$email = array_values($decodedToken)[1];
+
 // Obter o corpo da requisição
 $json = file_get_contents('php://input');
 
 // Transforma o JSON em um Objeto PHP
 $user = json_decode($json);
 
-$email = $user -> email;
+/*$email = $user -> email;*/
 
 $responseBody = '';
 

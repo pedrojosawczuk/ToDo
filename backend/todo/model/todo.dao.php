@@ -6,7 +6,7 @@ class TodoDAO {
     }
 
     public function getById($userId, $todoId) {
-        $sql = "SELECT * FROM tb_todo WHERE id = :id AND fk_user = :fk_user";
+        $sql = "SELECT id, title, description, deadline, status, created_at, updated_at FROM tb_todo WHERE id = :id AND fk_user = :fk_user";
         $stmt = $this -> pdo -> prepare($sql);
         $stmt -> bindValue(':id', $todoId);
         $stmt -> bindValue(':fk_user', $userId);
@@ -16,7 +16,7 @@ class TodoDAO {
     }
 
     public function getAll($userId) {
-        $sql = "SELECT * FROM tb_todo WHERE fk_user = :fk_user";
+        $sql = "SELECT id, title, description, deadline, status, created_at, updated_at FROM tb_todo WHERE fk_user = :fk_user";
         $stmt = $this -> pdo -> prepare($sql);
         $stmt -> bindValue(':fk_user', $userId);
         $stmt -> execute();

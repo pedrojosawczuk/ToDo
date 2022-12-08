@@ -71,10 +71,10 @@ class UserDAO {
     }
     
     public function delete($email_token) {
-        $sql = "DELETE FROM tb_user WHERE email = ?";
+        $sql = "DELETE FROM tb_user WHERE email = :email_token";
 
         $stmt = $this -> pdo -> prepare($sql);
-        $stmt -> bindParam(1, $email_token);
+        $stmt -> bindValue(':email_token', @$email_token);
 
         $stmt -> execute();
 

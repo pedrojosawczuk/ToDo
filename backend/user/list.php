@@ -1,38 +1,35 @@
 <?php
 
-require_once("../db/connection.inc.php");
-require_once("model/user.dao.php");
+    require_once("../db/connection.inc.php");
+    require_once("model/user.dao.php");
+    // Verificar se o token é valido
+    require_once("../auth/validar-jwt.inc.php");
 
-$userDAO = new UserDAO($pdo);
+    $userDAO = new UserDAO($pdo);
 
-// Obter o corpo da requisição
-$json = file_get_contents('php://input');
+    // Se token Válido, extrai o email to token
+    $email = array_values($decodedToken)[1];
 
-// Transforma o JSON em um Objeto PHP
-$user = json_decode($json);
+    $responseBody = '';
 
-@$email = $user -> email;
-
-$responseBody = '';
-
-if (!$email) { // Retornar um único objeto pelo ID
-    $user = $userDAO -> getAll();
-    $responseBody = json_encode($user);
-} else {
-    try {
-        $user = $userDAO -> getById($email);
+    if (!$email) { // Retornar um único objeto pelo ID
+        $user = $userDAO -> getAll();
         $responseBody = json_encode($user);
-    } catch (Exception $e) {
-        // Muda o código de resposta HTTP para 'bad request'
-        http_response_code(400);
-        $responseBody = '{ "message": "Ocorreu um erro ao tentar executar esta ação. Erro: Código: ' .  $e -> getCode() . '. Mensagem: ' . $e -> getMessage() . '" }';
+    } else {
+        try {
+            $user = $userDAO -> getById($email);
+            $responseBody = json_encode($user);
+        } catch (Exception $e) {
+            // Muda o código de resposta HTTP para 'bad request'
+            http_response_code(401);
+            $responseBody = '{ "message": "Ocorreu um erro ao tentar executar   esta ação. Erro: Código: ' .  $e -> getCode() . '. Mensagem: ' .  $e -> getMessage() . '" }';
+        }
     }
-}
 
-// Defique que o conteúdo da resposta será um JSON (application/JSON)
-header('Content-Type: application/json');
+    // Defique que o conteúdo da resposta será um JSON (application/JSON)
+    header('Content-Type: application/json');
 
-// Exibe a resposta
-print_r($responseBody);
+    // Exibe a resposta
+    print_r($responseBody);
 
 ?>
