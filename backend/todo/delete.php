@@ -2,12 +2,11 @@
 
 require_once("../db/connection.inc.php");
 require_once("model/todo.dao.php");
-
 // Verificar se o token é valido
-require_once('../auth/validar-jwt.inc.php');
+//require_once('../auth/validar-jwt.inc.php');
     
 $todoDAO = new TodoDAO($pdo);
-
+/*
 // Obter o corpo da requisição
 $json = file_get_contents('php://input');
 
@@ -16,6 +15,10 @@ $todo = json_decode($json);
 
 $userId = 1;
 $todoId = $todo -> id;
+*/
+
+$todoId = $_REQUEST['id'];
+$userId = $_REQUEST['id_user'];
 
 $responseBody = '';
 

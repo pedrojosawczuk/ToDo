@@ -38,15 +38,20 @@ class UserDAO {
             VALUES (:name, :email, :password)";
         $stmt = $this -> pdo -> prepare($sql);
 
+        $stmt -> bindValue(':name', $user['name']);
+        $stmt -> bindValue(':email', $user['email']);
+        $stmt -> bindValue(':password', $user['password']);
+        /*
         $stmt -> bindValue(':name', $user -> name);
         $stmt -> bindValue(':email', $user -> email);
         $stmt -> bindValue(':password', $user -> password);
+        */
         $stmt -> execute();
-        $user = clone $user;
+        //$user = clone $user;
     
-        $user -> id = $this -> pdo -> lastInsertId();
+        //$user -> id = $this -> pdo -> lastInsertId();
     
-        return $user;
+        //return $user;
     }
     
     public function update($email_token, $user) {
