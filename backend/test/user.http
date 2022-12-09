@@ -17,13 +17,9 @@ POST {{URL}}/user/login.php
 Content-Type: application/json
 
 {
-    "email": "juca4@gmail.com",
+    "email": "juca1@gmail.com",
     "password": "1234"
 }
-
-### Valid Token
-POST {{URL}}/auth/recursoqualquer.php
-Authorization: {{JWT}}
 
 ### Atualizar um usuário
 POST {{URL}}/user/update.php
@@ -35,6 +31,11 @@ Authorization: {{JWT}}
     "email": "juca1@gmail.com",
     "password": "juquinha1"
 }
+
+### Valid Token
+POST {{URL}}/auth/recursoqualquer.php
+Authorization: {{JWT}}
+
 
 ### Obter um usuário pelo EMAIL
 POST {{URL}}/user/list.php
