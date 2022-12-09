@@ -69,10 +69,14 @@
                 <script>
 
                     const posts = document.getElementById('posts');
+
+                    const idSession = sessionStorage.getItem('id');
+                    console.log(idSession);
                     
                     
         
-                    fetch('http://localhost/todo/backend/todo/list.php')
+                    fetch("http://localhost/todo/backend/todo/list.php?id="+{idSession}+"")
+
                         .then(function (response) {
                             return response.text();
                         })
