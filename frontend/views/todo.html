@@ -19,33 +19,44 @@
         <div>
 
         </div>
-        <div class="me-4">
-            <!-- Button trigger modal -->
-            <button id="myInput" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                Launch demo modal
-            </button>
+        <div class="me-4 d-flex justify-content-center align-items-center">
+               <!-- Button trigger modal -->
+               <button type="button" class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#modalCadastro">
+                Criar Tarefa
+                </button>
             
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Modal -->
+                <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 500px;">
+                    <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Tarefa</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column align-items-center">
+
+                            <form action="../../backend/todo/create.php">
+                                <input type="hidden" name="id_user">
+                                <input type="hidden" name="id">
+                                <label for="">Titulo:</label><input type="text" name="title" id="nome">
+                                <label for="">Descrição:</label><input type="textarea" name="description" id="description">
+                                <label for="">Data Limite:</label><input type="date" name="deadline" id="deadline">
+                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                    <label for="">Feita</label><input type="checkbox" name="status" id="check">
+                                </div>
+
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <input type="submit" class="btn btn-primary">
+
+                            </form>
                     </div>
-                    <div class="modal-body">
-                    ...
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
                 </div>
             </div>
 
+           
 
-            <button class="btn btn-danger" href="login.html">Sair</button>
+        <button class="btn btn-danger" href="login.html">Sair</button>
         </div>
     </header>
  
@@ -53,51 +64,106 @@
         <div class="d-flex flex-column justify-content-center">
             <h3>Sua lista de afazeres:</h3>
 
-            <script>
 
-            const posts = document.getElementById('posts');
+            <table class="table">
+                <script>
 
-            fetch(URL_API)
-                .then(function (response) {
-                    return response.text();
-                })
-                .then(function (arraybuffer) {
-                    const postsArray = JSON.parse(arraybuffer);
+                    const posts = document.getElementById('posts');
+                    
+                    
+        
+                    fetch('http://localhost/todo/backend/todo/list.php')
+                        .then(function (response) {
+                            return response.text();
+                        })
+                        .then(function (arraybuffer) {
+                            const postsArray = JSON.parse(arraybuffer);
+        
+                            postsArray.forEach(e => {
+                                const elem = document.createElement('tr');
+                                elem.class = "d-flex mt-2";
+        
+                                const elemCard = document.createElement('td');
+                                elemCard.class = "d-flex flex-row justify-content-between card p-4";
+                                elemCard.style = "width: 18rem;"
+                                elem.appendChild(elemCard);
+        
+                                const cardItem = document.createElement('div');
+                                cardItem.class = "form-check";
+                                elemCard.appendChild(cardItem);
 
-                    postsArray.forEach(e => {
-                        const elem = document.createElement('div');
-                        elem.class = "d-flex mt-2";
+                                const inputCard = document.createElement('input');
+                                inputCard.class = "form-check-input";
+                                inputCard.value = e.status;
+                                cardItem.appendChild(inputCard);
 
-                        const elemCard = document.createElement('div');
-                        elemCard.class = "d-flex flex-row justify-content-between card p-4";
-                        elemCard.style = "width: 18rem;"
-                        elem.appendChild(elemCard);
+                                const textCard = document.createElement('p');
+                                textCard.innerHTML = e.title;
+                                cardItem.appendChild(textCard);
 
-                        const cardItem = document.createElement('div');
-                        cardItem.class = "form-check";
-                        elemCard.appendChild(cardItem);
+                                const buttonCard = document.createElement('button');
+                                buttonCard.innerHTML = 'Ver Detalhes';
+                                buttonCard.type = 'button';
+                                buttonCard.class = 'btn btn-primary';
+                                buttonCard.class = 'btn btn-primary';
+                                buttonCard.setAttribute('data-bs-toggle' , 'modal')
+                                buttonCard.setAttribute('data-bs-target' , '#modalCadastro')
+                                buttonCard.onclick(GetOneTask(e.id , e.tkuser));
+                                elemCard.appendChild(buttonCard);
+                        })}
+                    )
 
 
-                })}
-            )
-           </script>
-            <div class="d-flex mt-2">
-                <div class="d-flex flex-row justify-content-center card p-4" style="width: 18rem;">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                          Tarefa
-                        </label>
-                      </div>
-                      
-                </div>
-            </div>
+                    
+                   </script>
+            </table>
+
         </div>
+        
+            
         
 
     </main>
       <footer>
 
       </footer>
+
+
+      <script>
+        function GetOneTask(id , id_user){
+
+            fetch('http://localhost/todo/backend/todo/list.php')
+                        .then(function (response) {
+                            return response.text();
+                        })
+                        .then(function (buffer) {
+                            const post = JSON.parse(buffer);    
+            })
+
+            const idInput = document.getElementById('id');
+            idInput.value = post.id;
+
+
+            const idUserInput = document.getElementById('id_user');
+            idUserInput.value = post.fkuser;
+
+
+            const TitleInput = document.getElementById('nome');
+            TitleInput.value = post.title;
+
+
+            const DescriptionInput = document.getElementById('description');
+            DescriptionInput.value = post.description;
+
+
+            const deadLineInput = document.getElementById('deadline');
+            deadLineInput.value = post.deadline;
+
+
+            const statusCheck = document.getElementById('check');
+            statusCheck.value = post.status;
+        }
+      </script>
+
 </body>
 </html>
