@@ -21,11 +21,11 @@ $user = $_REQUEST;
 
 $email = $user['email'];
 $password = $user['password'];
-/*
+
 print_r($user);
 print_r($email);
 print_r($password);
-*/
+
 $responseBody = '';
 
 if (($email == '') && ($password == '')) { // Retornar um único objeto pelo EMAIL e SENHA

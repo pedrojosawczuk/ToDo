@@ -18,7 +18,7 @@ $userId = array_values($decodedToken)[0];
 */
 
 $todo = $_REQUEST;
-$userId = $todo['id'];
+$userId = $todo['id_user'];
 
 /*
 print_r($name);

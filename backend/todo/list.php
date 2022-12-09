@@ -13,7 +13,7 @@ $todo = json_decode($json);
 
 @$todoId = $todo -> id;
 */
-
+print_r($_REQUEST);
 @$todoId = $_REQUEST['id'];
 $userId = $_REQUEST['id_user'];
 

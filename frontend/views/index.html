@@ -24,10 +24,11 @@
         <div>
             <form method="POST" action="../../backend/user/login.php" class="d-flex flex-column">
                 <label for="">Email:</label><input type="text" name="email" id="email">
-                <label for="">Senha:</label><input type="text" name="password" id="password">
+                <label for="">Senha:</label><input type="password" name="password" id="password">
 
                 <input type="submit" class="btn btn-info mt-2">
                 
+            </form>
                <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalCadastro">
                 Criar Conta
@@ -44,9 +45,9 @@
                     <div class="modal-body d-flex flex-row justify-content-center align-items-center">
                         <div>
                             <form action="../../backend/user/create.php" class="d-flex flex-column">
-                                <label for="">Nome:</label><input type="nome" name="nome" id="nome">
+                                <label for="">Nome:</label><input type="text" name="name" id="name">
                                 <label for="">Email:</label><input type="text" name="email" id="email">
-                                <label for="">Senha:</label><input type="text" name="senha" id="senha">
+                                <label for="">Senha:</label><input type="password" name="password" id="password">
 
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 <input type="submit" class="btn btn-primary">
@@ -57,7 +58,6 @@
                 </div>
             </div>
 
-            </form>
         </div>
     
 
