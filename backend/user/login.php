@@ -21,11 +21,11 @@ $user = $_REQUEST;
 
 $email = $user['email'];
 $password = $user['password'];
-
+/*
 print_r($user);
 print_r($email);
 print_r($password);
-
+*/
 $responseBody = '';
 
 if (($email == '') && ($password == '')) { // Retornar um único objeto pelo EMAIL e SENHA
@@ -49,7 +49,8 @@ if (($email == '') && ($password == '')) { // Retornar um único objeto pelo EMA
             // Gerar o token
             $jwt = JwtUtil::encode($payload, JWT_SECRET_KEY);
             
-            $responseBody = "{ \"token\": \"$jwt\" }";
+            /*$responseBody = "{ \"token\": \"$jwt\" }";*/
+            $responseBody = "{ \"id\": \"$id\" }";
         } else {
             $responseBody = '{ "message": "Usuário/Senha Inválidos" }';
         }
