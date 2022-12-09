@@ -19,7 +19,7 @@
     
     $responseBody = '';
     
-    if (($email == '') && ($password == '')) { // Retornar um único objeto pelo EMAIL e SENHA
+    if (($email == '') || ($password == '')) { // Retornar um único objeto pelo EMAIL e SENHA
         http_response_code(403);
         $responseBody = '{ "message": "Usuário/Senha não podem estar vázios!!!" }';
     } else {
