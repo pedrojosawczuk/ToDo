@@ -1,6 +1,6 @@
 @URL=http://localhost/todo/backend
 
-@JWT = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqdWNhMkBnbWFpbC5jb20ifQ.OMtGQBiVpk_bQRB4sRzd4p3-U1ScumrIe8wKpuh0UNM
+@JWT = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.zeY6Rm--spAS-DdrA6boEDxJVLErMyVoFj5KbwkZ7kg
 
 ### Create a User
 POST {{URL}}/user/create.php
@@ -17,8 +17,8 @@ POST {{URL}}/user/login.php
 Content-Type: application/json
 
 {
-    "email": "juca2@gmail.com",
-    "password": "juquinha2"
+    "email": "juca4@gmail.com",
+    "password": "1234"
 }
 
 ### Valid Token
