@@ -4,7 +4,7 @@ require_once("../db/connection.inc.php");
 require_once("model/todo.dao.php");
 
 $todoDAO = new TodoDAO($pdo);
-
+/*
 // Obter o corpo da requisição
 $json = file_get_contents('php://input');
 
@@ -12,10 +12,12 @@ $json = file_get_contents('php://input');
 $todo = json_decode($json);
 
 @$todoId = $todo -> id;
+*/
+
+@$todoId = $_REQUEST['id'];
+$userId = $_REQUEST['id_user'];
 
 $responseBody = '';
-
-$userId = 1;
 
 if (!$todoId) { // Retornar um único objeto pelo ID
     $todo = $todoDAO -> getAll($userId);

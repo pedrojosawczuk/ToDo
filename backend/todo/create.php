@@ -2,18 +2,31 @@
 
 require_once("../db/connection.inc.php");
 require_once("model/todo.dao.php");
+// Verificar se o token é valido
+//require_once('../auth/validar-jwt.inc.php');
 
 $todoDAO = new TodoDAO($pdo);
-
+/*
 // Obter o corpo da requisição
 $json = file_get_contents('php://input');
 
 // Transforma o JSON em um Objeto PHP
 $todo = json_decode($json);
 
-$responseBody = '';
+// Se token Válido, extrai o email to token
+$userId = array_values($decodedToken)[0];
+*/
 
-$userId = 2;
+$todo = $_REQUEST;
+$userId = $todo['id'];
+
+/*
+print_r($name);
+print_r($email);
+print_r($password);
+*/
+
+$responseBody = '';
 
 try {
     $todo = $todoDAO -> insert($userId, $todo);
