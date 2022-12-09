@@ -42,6 +42,7 @@
                 
                 $responseBody = "{ \"token\": \"$jwt\" }";
             } else {
+                http_response_code(403);
                 $responseBody = '{ "message": "Usuário/Senha Inválidos" }';
             }
         } catch (Exception $e) {
