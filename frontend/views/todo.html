@@ -35,10 +35,10 @@
                         </div>
                         <div class="modal-body d-flex flex-column align-items-center">
 
-                            <form method="POST" action="'../../backend/todo/create.php?id_user='.${idSession}">
+                            <form method="POST">
                                 <input type="hidden" name="id_user">
                                 <input type="hidden" name="id">
-                                <label for="">Titulo:</label><input type="text" name="title" id="nome">
+                                <label for="">Titulo:</label><input type="text" name="title" id="title">
                                 <label for="">Descrição:</label><input type="textarea" name="description" id="description">
                                 <label for="">Data Limite:</label><input type="date" name="deadline" id="deadline">
                                 <div class="d-flex flex-row justify-content-center align-items-center">
@@ -46,11 +46,11 @@
                                 </div>
 
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-primary">
+                                <input type="submit" class="btn btn-primary" onclick="CreateTask()">
 
                             </form>
                             <script>
-                                const idSession = sessionStorage.getItem('id');
+                                const idSession = localStorage.getItem('id');
                                 console.log(idSession);
 
                                 fetch("http://localhost/todo/backend/todo/create.php?id_user="+idSession) 
@@ -75,10 +75,14 @@
             </table>
             <script>
 
+
+if(!localStorage.getItem('token')){
+window.location.replace('index.html');}
+
                 const table = document.getElementById('table');
                 const posts = document.getElementById('posts');
     
-                fetch("http://localhost/todo/backend/todo/list.php?id_user="+idSession)
+                fetch("http://localhost/todo/backend/todo/list.php?token="+localStorage.getItem('token'))
                     .then(function (response) {
                         return response.text();
                     })
@@ -175,6 +179,52 @@
             const statusCheck = document.getElementById('check');
             statusCheck.value = post.status;
         }*/
+
+
+        function CreateTask(){
+
+        const titleInput = document.getElementById('title');
+        const descriptionInput = document.getElementById('description');
+        const deadlineInput = document.getElementById('deadline');
+        const checkInput = document.getElementById('check');
+
+
+        const title = titleInput.value;
+        const description = descriptionInput.value;
+        const deadline = deadlineInput.value;
+        const check = checkInput.value;
+
+
+
+
+
+        fetch('http://localhost/todo/backend/todo/create.php', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                //'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "title": title, "description":  description, "deadline": deadline, "check": check})
+        })
+
+        .then(response => { 
+            status = response.status;
+            return response.json();
+        })
+        .then(response => {
+            console.log(response);
+
+            if(status != 200){
+                alert(response.message);
+            }
+            else{
+                window.location.replace('todo.html');
+                alert('Tarefa criado com sucesso!');
+            }
+        })
+
+        }
       </script>
 
 </body>
