@@ -9,8 +9,6 @@ function Login() {
     fetch('http://localhost/todo/backend/user/login.php', {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
-            //'Authorization': localStorage.getIte('token'),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ "email":  email, "password":password })
@@ -43,8 +41,6 @@ function CreateUser() {
     fetch('http://localhost/todo/backend/user/create.php', {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
-            'Authorization': localStorage.getItem('token'),
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ "name": name, "email": email, "password": password })
