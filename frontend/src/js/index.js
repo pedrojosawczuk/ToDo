@@ -1,6 +1,6 @@
 function Login() {
     const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementByI('password');
+    const passwordInput = document.getElementById('password');
     const email = emailInput.value;
     const password = passwordInput.value;
     console.log(password , email);
@@ -26,7 +26,7 @@ function Login() {
         }
         else{
             localStorage.setItem('token', response.token);
-            console.log(localStorage.getItem('token'));
+            console.log('Token Index ='+localStorage.getItem('token'));
             window.location.replace('todo.html');
         }
     })
@@ -35,7 +35,7 @@ function Login() {
 function CreateUser() {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email2');
-    const passwordInput = document.getElementByI('password2');
+    const passwordInput = document.getElementById('password2');
     const name = nameInput.value;
     const email = emailInput.value;
     const password = passwordInput.value;
