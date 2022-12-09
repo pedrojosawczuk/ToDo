@@ -25,7 +25,7 @@ Authorization: {{JWT}}
     "title": "Title ToDo versão 2",
     "description": "Description ToDo",
     "deadline": "2022-12-08 14:34:05",
-    "status": "D"
+    "status": "A"
 }
 
 ### Obter todos os todos
