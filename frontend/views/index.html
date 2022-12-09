@@ -19,10 +19,10 @@
 <body>
    
     <header class="d-flex justify-content-center align-items-center mt-3 mb-5 p-4">
-        <div class="d-flex justify-content-center align-items-center ms-4">
+        <nav class="d-flex justify-content-center align-items-center ms-4 navbar">
             <img class="img-logo me-2" src="../src/logo.png" alt="Logo">
             <h1 class="text-info">ToDoList</h1>
-        </div>
+        </nav>
         <div>
 
         </div>
@@ -31,20 +31,23 @@
     <main class="d-flex flex-row justify-content-center align-items-center ">
         <div>
             <div  class="d-flex flex-column">
-                <label for="">Email:</label><input type="text" name="email" id="email">
-                <label for="">Senha:</label><input type="password" name="password" id="password">
+                <label for="">Email:</label><input type="text" name="email" id="email" class="form-control">
+                <label for="">Senha:</label><input type="password" name="password" id="password" class="form-control">
+
+                <div id="alert" class="alert alert-primary mt-1" style="height: fit-content; padding: 2px;" role="alert">
+                </div>
 
                 <input type="submit" class="btn btn-info mt-2" onclick="Login()">
                 
             </div>
                <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#modalCadastro">
+            <button type="button" class="btn btn-primary mt-2" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#modalCadastro">
                 Criar Conta
             </button>
             
             <!-- Modal -->
             <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 500px;">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Usuário</h1>
@@ -53,12 +56,17 @@
                     <div class="modal-body d-flex flex-row justify-content-center align-items-center">
                         <div>
                             <form method="POST" class="d-flex flex-column">
-                                <label for="">Nome:</label><input type="text" name="name" id="name">
-                                <label for="">Email:</label><input type="text" name="email" id="email2">
-                                <label for="">Senha:</label><input type="password" name="password" id="password2">
-
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-primary" onclick="CreateUser()">
+                                <div class="input-group mb-3">
+                                    <label for="" class="input-group-text">Nome:</label><input type="text" name="name" id="name" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="" class="input-group-text">Email:</label><input type="text" name="email" id="email2" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="" class="input-group-text">Senha:</label><input type="password" name="password" id="password2" class="form-control">
+                                </div>
+                                <input type="submit" class="btn btn-primary mt-1" onclick="CreateUser()">
+                                <button type="button" class="btn btn-secondary mt-1" data-bs-dismiss="modal">Cancelar</button>
                             </form>
                         </div>
                     </div>
