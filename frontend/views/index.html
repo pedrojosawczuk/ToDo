@@ -73,13 +73,21 @@
 
 <script>
 
+     sessionStorage.setItem('id' , '1');
+    console.log('Deu bom'+sessionStorage.getItem('id')+'')
+
     function Login(){
+
+        sessionStorage.setItem('id' , '2');
+        console.log('Deu bom'+sessionStorage.getItem('id')+'')
 
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
 
         const email = emailInput.value;
         const password = passwordInput.value;
+
+        console.log(password , email);
 
         fetch('http://localhost/todo/backend/user/login.php', {
             method: 'POST',
@@ -95,12 +103,11 @@
         var responseDecode = JSON.parse(response);
 
         if(responseDecode.message){
-            console.log('deu ruim :('+responseDecode.message+'')
+            alert(responseDecode.message);
         }
         else{
             sessionStorage.setItem('id' , responseDecode.id);
-            console.log('Deu bom'+sessionStorage.getItem('id')+'')
-
+            
         }
 
         
