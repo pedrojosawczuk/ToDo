@@ -10,9 +10,9 @@
     
     <!-- Redireciona para o 'index.html' se não existir token no localstorage -->
     <script>
-        if(!localStorage.getItem('token')) {
-            window.location.replace('index.html');
-        }
+    //    if(!localStorage.getItem('token')) {
+     //       window.location.replace('index.html');
+     //   }
     </script>
     
 </head>
@@ -46,16 +46,26 @@
                             <form method="POST">
                                 <input type="hidden" name="id_user">
                                 <input type="hidden" name="id">
-                                <label for="">Titulo:</label><input type="text" name="title" id="title">
-                                <label for="">Descrição:</label><input type="textarea" name="description" id="description">
-                                <label for="">Data Limite:</label><input type="date" name="deadline" id="deadline">
+                                <div class="input-group mb-3">
+                                    <label for="" class="input-group-text">Titulo:</label><input type="text" name="title" id="title" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="" class="input-group-text">Descrição:</label><input type="textarea" name="description" id="description" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="" class="input-group-text">Data Limite:</label><input type="date" name="deadline" id="deadline" class="form-control">
+                                </div>
+                            
                                 <div class="d-flex flex-row justify-content-center align-items-center">
-                                    <label for="">Feita</label><input type="checkbox" name="status" id="check">
+                                    <label for="">Feita: </label><input type="checkbox" name="status" id="check" class="form-check-input ms-2">
                                 </div>
 
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <input type="submit" class="btn btn-primary" onclick="CreateTask()">
+                                <div class="d-flex flex-column align-items-center">
+                                    <input type="submit" class="btn btn-primary mt-3" style="width: 100%;" onclick="CreateTask()">
+                                    <button type="button" class="btn btn-secondary mt-2" style="width: 100%;" data-bs-dismiss="modal">Cancelar</button>
+                                </div>
 
+                                
                             </form>
                     </div>
                     </div>
@@ -72,7 +82,7 @@
         <div class="d-flex flex-column justify-content-center">
             <h3>Sua lista de afazeres:</h3>
 
-            <table class="table" id="table">
+            <table class="table table-striped" id="table">
             </table>
 
         </div>
