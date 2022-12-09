@@ -7,7 +7,7 @@ require('../auth/jwtutil.class.php');
 require('../auth/config.php');
 
 $userDAO = new UserDAO($pdo);
-/*
+
 // Obter o corpo da requisição
 $json = file_get_contents('php://input');
 
@@ -16,11 +16,11 @@ $user = json_decode($json);
 
 @$email = $user -> email;
 @$password = $user -> password;
-*/
+/*
 $user = $_REQUEST;
 
 $email = $user['email'];
-$password = $user['password'];
+$password = $user['password'];*/
 /*
 print_r($user);
 print_r($email);

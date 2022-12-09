@@ -35,7 +35,7 @@
                         </div>
                         <div class="modal-body d-flex flex-column align-items-center">
 
-                            <form action="../../backend/todo/create.php">
+                            <form method="POST" action="'../../backend/todo/create.php?id_user='.${idSession}">
                                 <input type="hidden" name="id_user">
                                 <input type="hidden" name="id">
                                 <label for="">Titulo:</label><input type="text" name="title" id="nome">
@@ -49,6 +49,11 @@
                                 <input type="submit" class="btn btn-primary">
 
                             </form>
+                            <script>
+                                const idSession = sessionStorage.getItem('id');
+                                console.log(idSession);
+                                document.getElementById('output').innerHTML = idSession;
+                            </script>
                     </div>
                     </div>
                 </div>
@@ -65,63 +70,71 @@
             <h3>Sua lista de afazeres:</h3>
 
 
-            <table class="table">
-                <script>
-
-                    const posts = document.getElementById('posts');
-
-                    const idSession = sessionStorage.getItem('id');
-                    console.log(idSession);
-                    
-                    
-        
-                    fetch("http://localhost/todo/backend/todo/list.php?id="+{idSession}+"")
-
-                        .then(function (response) {
-                            return response.text();
-                        })
-                        .then(function (arraybuffer) {
-                            console.log(arraybuffer);
-                            const postsArray = JSON.parse(arraybuffer);
-        
-                            postsArray.forEach(e => {
-                                const elem = document.createElement('tr');
-                                elem.class = "d-flex mt-2";
-        
-                                const elemCard = document.createElement('td');
-                                elemCard.class = "d-flex flex-row justify-content-between card p-4";
-                                elemCard.style = "width: 18rem;"
-                                elem.appendChild(elemCard);
-        
-                                const cardItem = document.createElement('div');
-                                cardItem.class = "form-check";
-                                elemCard.appendChild(cardItem);
-
-                                const inputCard = document.createElement('input');
-                                inputCard.class = "form-check-input";
-                                inputCard.value = e.status;
-                                cardItem.appendChild(inputCard);
-
-                                const textCard = document.createElement('p');
-                                textCard.innerHTML = e.title;
-                                cardItem.appendChild(textCard);
-
-                                const buttonCard = document.createElement('button');
-                                buttonCard.innerHTML = 'Ver Detalhes';
-                                buttonCard.type = 'button';
-                                buttonCard.class = 'btn btn-primary';
-                                buttonCard.class = 'btn btn-primary';
-                                buttonCard.setAttribute('data-bs-toggle' , 'modal')
-                                buttonCard.setAttribute('data-bs-target' , '#modalCadastro')
-                                buttonCard.onclick(GetOneTask(e.id , e.tkuser));
-                                elemCard.appendChild(buttonCard);
-                        })}
-                    )
-
-
-                    
-                   </script>
+            <table class="table" id="table">
             </table>
+            <script>
+
+                const table = document.getElementById('table');
+                const posts = document.getElementById('posts');
+
+                /*const idSession = sessionStorage.getItem('id');
+                console.log(idSession);
+                */
+                
+    
+                fetch("http://localhost/todo/backend/todo/list.php?id_user="+idSession)
+                    .then(function (response) {
+                        return response.text();
+                    })
+                    .then(function (arraybuffer) {
+                        //console.log(arraybuffer);
+                        const postsArray = JSON.parse(arraybuffer);
+    
+                        postsArray.forEach(e => {
+                            const elem = document.createElement('tr');
+                            elem.className = "d-flex mt-2";
+    
+                            const elemCard = document.createElement('td');
+                            elemCard.className = "d-flex flex-row justify-content-between card p-4";
+                            elemCard.style = "width: 18rem;"
+                            elem.appendChild(elemCard);
+    
+                            const cardItem = document.createElement('div');
+                            cardItem.className = "form-check";
+                            elemCard.appendChild(cardItem);
+
+                            const inputCard = document.createElement('input');
+                            inputCard.className = "form-check-input";
+                            inputCard.type = 'text';
+                            if(e.status == 'A') {
+                                inputCard.value = 'yes';
+                            } else {
+                                inputCard.value = 'no';
+                            }
+                            cardItem.appendChild(inputCard);
+
+                            const textCard = document.createElement('p');
+                            textCard.innerHTML = e.title;
+                            cardItem.appendChild(textCard);
+
+                            const buttonCard = document.createElement('button');
+                            buttonCard.innerHTML = 'Ver Detalhes';
+                            buttonCard.type = 'button';
+                            buttonCard.className = 'btn btn-primary';
+                            buttonCard.className = 'btn btn-primary';
+                            buttonCard.setAttribute('data-bs-toggle' , 'modal');
+                            buttonCard.setAttribute('data-bs-target' , '#modalCadastro');
+                            //buttonCard.onclick(GetOneTask(e.id , e.fk_user));
+                            elemCard.appendChild(buttonCard);
+
+                            document.getElementById('table').appendChild(elem);
+                        })
+                    }
+                )
+
+
+                
+               </script>
 
         </div>
         
@@ -134,7 +147,7 @@
       </footer>
 
 
-      <script>
+      <script>/*
         function GetOneTask(id , id_user){
 
             fetch('http://localhost/todo/backend/todo/list.php')
@@ -167,7 +180,7 @@
 
             const statusCheck = document.getElementById('check');
             statusCheck.value = post.status;
-        }
+        }*/
       </script>
 
 </body>
