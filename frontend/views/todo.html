@@ -77,12 +77,10 @@
                 const table = document.getElementById('table');
                 const posts = document.getElementById('posts');
 
-                /*const idSession = sessionStorage.getItem('id');
-                console.log(idSession);
-                */
+             
                 
     
-                fetch("http://localhost/todo/backend/todo/list.php?id_user="+idSession)
+                fetch(GetURL())
                     .then(function (response) {
                         return response.text();
                     })
@@ -131,6 +129,14 @@
                         })
                     }
                 )
+
+
+                function GetURL(){
+                       const idSession = sessionStorage.getItem('id');
+                       console.log(idSession);
+                       const URL = "http://localhost/todo/backend/todo/list.php?id_user="+idSession;
+                       return URL;
+                }
 
 
                 
