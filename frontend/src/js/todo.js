@@ -51,7 +51,7 @@
                             buttonCard.className = 'btn btn-primary';
                             buttonCard.setAttribute('data-bs-toggle' , 'modal');
                             buttonCard.setAttribute('data-bs-target' , '#modalCadastro');
-                            //buttonCard.onclick(GetOneTask(e.id , e.fk_user));
+                            buttonCard.onclick(GetOneTask(e.id , e.fk_user));
                             elemCard.appendChild(buttonCard);
 
                             document.getElementById('table').appendChild(elem);
@@ -62,7 +62,7 @@
 
 
 
-/*
+
         function GetOneTask(id , id_user){
 
             fetch('http://localhost/todo/backend/todo/list.php')
@@ -95,7 +95,7 @@
 
             const statusCheck = document.getElementById('check');
             statusCheck.value = post.status;
-        }*/
+        }
 
 
         function CreateTask(){
