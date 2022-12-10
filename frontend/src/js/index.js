@@ -1,4 +1,5 @@
 function Login() {
+    const docAlert = document.getElementById('alert');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const email = emailInput.value;
