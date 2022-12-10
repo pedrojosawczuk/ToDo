@@ -2,7 +2,7 @@
 
 @JWT = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqdWNhMUBnbWFpbC5jb20ifQ.zeY6Rm--spAS-DdrA6boEDxJVLErMyVoFj5KbwkZ7kg
 
-### Create a User
+### Create a Todo
 POST {{URL}}/todo/create.php
 Content-Type: application/json
 Authorization: {{JWT}}
@@ -11,8 +11,7 @@ Authorization: {{JWT}}
     "title": "Title ToDo",
     "description": "Description ToDo",
     "deadline": "2022-12-08 14:34:05",
-    "status": "A",
-    "fk_user": "2"
+    "status": "A"
 }
 
 ### Atualizar um todo
