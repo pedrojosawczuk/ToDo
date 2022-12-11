@@ -86,6 +86,7 @@ fetch("http://localhost/todo/backend/todo/list.php", {
             const input = document.createElement('input');
             input.className = "form-check-input";
             input.type = 'checkbox';
+            input.checked = e.status;
 
             const text = document.createElement('p');
             text.innerHTML = e.title;
