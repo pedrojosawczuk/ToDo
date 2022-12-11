@@ -30,7 +30,31 @@ function GetOneTask(e){
     const statusCheck = document.getElementById('check');
     statusCheck.value = post.status;*/
 }
-
+function DeleteOne(e) {
+    console.log(e.id);
+    
+    fetch('http://localhost/todo/backend/todo/delete.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'authorization': `${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ "id": e.id })
+    })
+    .then(response => { 
+        status = response.status;
+        //return response.json();
+    })
+    .then(response => {
+        console.log(response);
+        if(status != 200){
+            alert(response.message);
+        }
+        else{
+            window.location.replace('todo.html');
+        }
+    })
+}
 const table = document.getElementById('table');
 const posts = document.getElementById('posts');
 
@@ -74,11 +98,18 @@ fetch("http://localhost/todo/backend/todo/list.php", {
             button.setAttribute('data-bs-toggle' , 'modal');
             button.setAttribute('data-bs-target' , '#modalCadastro');
             button.setAttribute("onclick","GetOneTask(this);")
-            //button.onclick = GetOneTask(this);
+
+            const btn_delete = document.createElement('button');
+            btn_delete.innerHTML = 'Excluir';
+            btn_delete.id = e.id;
+            btn_delete.type = 'button';
+            btn_delete.className = 'btn btn-danger';
+            btn_delete.setAttribute("onclick","DeleteOne(this);")
 
             td.appendChild(input);
             td.appendChild(text);
             td.appendChild(button);
+            td.appendChild(btn_delete);
             tr.appendChild(td);
             table.appendChild(tr);
 
@@ -153,7 +184,7 @@ function CreateTask(){
         }
         else{
             window.location.replace('todo.html');
-            alert('Tarefa criado com sucesso!');
+            //alert('Tarefa criado com sucesso!');
         }
     })
 }
