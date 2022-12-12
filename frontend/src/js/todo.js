@@ -126,44 +126,6 @@ fetch("http://localhost/todo/backend/todo/list.php", {
             td.appendChild(btn_delete);
             tr.appendChild(td);
             table.appendChild(tr);
-
-            /*const elem = document.createElement('tr');
-            elem.className = "d-flex mt-2";
-        
-            const elemCard = document.createElement('td');
-            elemCard.className = "d-flex flex-row justify-content-between card p-4";
-            elemCard.style = "width: 18rem;"
-            elem.appendChild(elemCard);
-        
-            const cardItem = document.createElement('div');
-            cardItem.className = "form-check";
-            elemCard.appendChild(cardItem);
-    
-            const inputCard = document.createElement('input');
-            inputCard.className = "form-check-input";
-            inputCard.type = 'text';
-            if(e.status == 'A') {
-                inputCard.value = 'yes';
-            } else {
-                inputCard.value = 'no';
-            }
-            cardItem.appendChild(inputCard);
-    
-            const textCard = document.createElement('p');
-            textCard.innerHTML = e.title;
-            cardItem.appendChild(textCard);
-    
-            const buttonCard = document.createElement('button');
-            buttonCard.innerHTML = 'Ver Detalhes';
-            buttonCard.type = 'button';
-            buttonCard.className = 'btn btn-primary';
-            buttonCard.className = 'btn btn-primary';
-            buttonCard.setAttribute('data-bs-toggle' , 'modal');
-            buttonCard.setAttribute('data-bs-target' , '#modalCadastro');
-            //buttonCard.onclick(GetOneTask(e.id , e.fk_user));
-            elemCard.appendChild(buttonCard);
-    
-            document.getElementById('table').appendChild(elem);*/
         })
     }
 })
@@ -203,7 +165,6 @@ function CreateTask(){
             }
             else{
                 window.location.replace('todo.html');
-                //alert('Tarefa criado com sucesso!');
             }
         })
     } else {
@@ -226,7 +187,6 @@ function CreateTask(){
             }
             else{
                 window.location.replace('todo.html');
-                //alert('Tarefa criado com sucesso!');
             }
         })
 
