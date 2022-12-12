@@ -10,9 +10,9 @@
     
     <!-- Redireciona para o 'index.html' se não existir token no localstorage -->
     <script>
-    //    if(!localStorage.getItem('token')) {
-     //       window.location.replace('index.html');
-     //   }
+        if(!localStorage.getItem('token')) {
+            window.location.replace('index.html');
+        }
     </script>
     
 </head>
@@ -24,22 +24,20 @@
             <img class="img-logo me-2" src="../src/logo.png" alt="Logo">
             <h1 class="text-info">ToDoList</h1>
         </div>
-        <div>
 
-        </div>
         <div class="me-4 d-flex justify-content-center align-items-center">
-               <!-- Button trigger modal -->
-               <button type="button" class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#modalCadastro">
-                Criar Tarefa
-                </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#modalCadastro">
+            Criar Tarefa
+            </button>
             
-                <!-- Modal -->
-                <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 500px;">
-                    <div class="modal-dialog modal-lg">
+            <!-- Modal -->
+            <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="height: 500px;">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Tarefa</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Tarefa</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body d-flex flex-column align-items-center">
 
@@ -47,34 +45,34 @@
                                 <input type="hidden" name="id_user" id="id_user">
                                 <input type="hidden" name="id" id="id">
                                 <div class="input-group mb-3">
-                                    <label for="" class="input-group-text">Titulo:</label><input type="text" name="title" id="title" class="form-control">
+                                    <label for="" class="input-group-text">Titulo:</label>
+                                    <input type="text" name="title" id="title" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <label for="" class="input-group-text">Descrição:</label><input type="textarea" name="description" id="description" class="form-control">
+                                    <label for="" class="input-group-text">Descrição:</label>
+                                    <input type="textarea" name="description" id="description" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <label for="" class="input-group-text">Data Limite:</label><input type="datetime-local" name="deadline" id="deadline" class="form-control">
+                                    <label for="" class="input-group-text">Data Limite:</label>
+                                    <input type="datetime-local" name="deadline" id="deadline" class="form-control">
                                 </div>
                             
                                 <div class="d-flex flex-row justify-content-center align-items-center">
-                                    <label for="">Feita: </label><input type="checkbox" name="status" id="check" class="form-check-input ms-2">
+                                    <label for="">Feita: </label>
+                                    <input type="checkbox" name="status" id="check" class="form-check-input ms-2">
                                 </div>
 
                                 <div class="d-flex flex-column align-items-center">
                                     <input type="submit" class="btn btn-primary mt-3" style="width: 100%;" onclick="CreateTask()">
                                     <button type="button" class="btn btn-secondary mt-2" style="width: 100%;" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
-
-                                
                             </form>
-                    </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-
-           
-
-        <button class="btn btn-danger" href="login.html">Sair</button>
+            <button class="btn btn-danger" href="login.html">Sair</button>
         </div>
     </header>
  
@@ -84,10 +82,9 @@
 
             <table class="table table-striped" id="table">
             </table>
-
         </div>
-
     </main>
+
     <footer>
 
     </footer>
