@@ -104,7 +104,7 @@ fetch("http://localhost/todo/backend/todo/list.php", {
         const th5 = document.createElement('th');
         th5.setAttribute('scope' , 'col');
         th5.innerHTML = 'More'
-
+            
         const th6 = document.createElement('th');
         th6.setAttribute('scope' , 'col');
         th6.innerHTML = 'Delete'

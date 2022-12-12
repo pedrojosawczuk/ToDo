@@ -21,7 +21,8 @@ function Login() {
     .then(response => {
         console.log(response);
         if(status != 200){
-            alert(response.message);
+            docAlert.innerText = response.message;
+            //alert(response.message);
         }
         else{
             localStorage.setItem('token', response.token);
