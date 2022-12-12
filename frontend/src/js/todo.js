@@ -1,35 +1,44 @@
 function GetOneTask(e){
-    console.log(e);
-    /*
-    id = e.id;
-    id_user = elem.className;
+    console.log(e.id);
 
-    fetch('http://localhost/todo/backend/todo/list.php')
-    .then(function (response) {
-        return response.text();
+    fetch('http://localhost/todo/backend/todo/list.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'authorization': `${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ "id": e.id })
     })
-    .then(function (buffer) {
-        const post = JSON.parse(buffer);    
+    .then(response => { 
+        status = response.status;
+        return response.json();
     })
+    .then(response => {
+        console.log(response);
+        if(status != 200){
+            alert(response.message);
+        }
+        else{
+            console.log('->'+response.id+'<-');
+            console.log('->'+response.fk_user+'<-');
+            console.log('->'+response.title+'<-');
+            console.log('->'+response.description+'<-');
+            console.log('->'+response.deadline+'<-');
+            console.log('->'+response.status+'<-');
 
-    const idInput = document.getElementById('id');
-    idInput.value = post.id;
-
-    const idUserInput = document.getElementById('id_user');
-    idUserInput.value = post.fkuser;
-
-    const TitleInput = document.getElementById('nome');
-    TitleInput.value = post.title;
-
-    const DescriptionInput = document.getElementById    ('description');
-    DescriptionInput.value = post.description;
-
-    const deadLineInput = document.getElementById   ('deadline');
-    deadLineInput.value = post.deadline;
-
-    const statusCheck = document.getElementById('check');
-    statusCheck.value = post.status;*/
+            document.getElementById('id').value = response.id;
+            document.getElementById('id_user').value = response.fkuser;
+            if(response.title)
+            document.getElementById('title').value = response.title;
+            if(response.description)
+            document.getElementById('description').value = response.description;
+            if(response.deadline)
+            document.getElementById('deadline').value = response.deadline;
+            document.getElementById('check').checked = response.status;
+        }
+    })
 }
+
 function DeleteOne(e) {
     console.log(e.id);
     
@@ -69,7 +78,6 @@ fetch("http://localhost/todo/backend/todo/list.php", {
     return response.json();
 })
 .then(response => {
-    console.log(response);
     if(status != 200){
         alert(response.message);
     }
@@ -87,9 +95,13 @@ fetch("http://localhost/todo/backend/todo/list.php", {
             input.className = "form-check-input";
             input.type = 'checkbox';
             input.checked = e.status;
+            input.disabled = true;
 
-            const text = document.createElement('p');
-            text.innerHTML = e.title;
+            const title = document.createElement('h3');
+            title.innerHTML = e.title;
+
+            const description = document.createElement('p');
+            description.innerHTML = e.description;
             
             const button = document.createElement('button');
             button.innerHTML = 'Ver Detalhes';
@@ -108,7 +120,8 @@ fetch("http://localhost/todo/backend/todo/list.php", {
             btn_delete.setAttribute("onclick","DeleteOne(this);")
 
             td.appendChild(input);
-            td.appendChild(text);
+            td.appendChild(title);
+            td.appendChild(description);
             td.appendChild(button);
             td.appendChild(btn_delete);
             tr.appendChild(td);
@@ -156,36 +169,66 @@ fetch("http://localhost/todo/backend/todo/list.php", {
 })
 
 function CreateTask(){
+    const idIput = document.getElementById('id');
+    const idUserIput = document.getElementById('id_user');
     const titleInput = document.getElementById('title');
     const descriptionInput = document.getElementById('description');
     const deadlineInput = document.getElementById('deadline');
     const checkInput = document.getElementById('check');
     
+    const id = idIput.value;
+    const idUser = idUserIput.value;
     const title = titleInput.value;
     const description = descriptionInput.value;
     const deadline = deadlineInput.value;
-    const check = checkInput.value;
+    const check = checkInput.checked;
     
-    fetch('http://localhost/todo/backend/todo/create.php', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        'authorization': `${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify({ "title": title, "description":  description, "deadline": deadline, "status": check})
-    })
-    .then(response => { 
-        status = response.status;
-        return response.json();
-    })
-    .then(response => {
-        console.log(response);
-        if(status != 200){
-            alert(response.message);
-        }
-        else{
-            window.location.replace('todo.html');
-            //alert('Tarefa criado com sucesso!');
-        }
-    })
+    if(!id) {
+        fetch('http://localhost/todo/backend/todo/create.php', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'authorization': `${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({ "title": title, "description":  description, "deadline": deadline,   "status": check})
+        })
+        .then(response => { 
+            status = response.status;
+            return response.json();
+        })
+        .then(response => {
+            console.log(response);
+            if(status != 200){
+                alert(response.message);
+            }
+            else{
+                window.location.replace('todo.html');
+                //alert('Tarefa criado com sucesso!');
+            }
+        })
+    } else {
+        fetch('http://localhost/todo/backend/todo/update.php', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'authorization': `${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({ "id": id, "title": title, "description": description, "deadline": deadline, "status": check})
+        })
+        .then(response => { 
+            status = response.status;
+            return response.json();
+        })
+        .then(response => {
+            console.log(response);
+            if(status != 200){
+                alert(response.message);
+            }
+            else{
+                window.location.replace('todo.html');
+                //alert('Tarefa criado com sucesso!');
+            }
+        })
+
+    }
 }
